@@ -18,8 +18,10 @@
 ; load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/gsn_csm.ncl"
 ; load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/contributed.ncl"
 
+external VINTH2P_MOD "./vinth2p_ecmwf_mod.so"
+
 begin
- diri = "../"
+ diri = "./"
  fili = "ccsm35.h0.0021-01.demo.nc"
 
  f    = addfile (diri+fili, "r")
@@ -62,18 +64,18 @@ begin
 ;-----------------------------------------------------------------
 
  varflg = 1
- Tpx    = vinth2p_ecmwf (T,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
+ Tpx    = VINTH2P_MOD::VINTH2P_ECMWF_MOD (T,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
  varflg = 0
- Qpx    = vinth2p_ecmwf (Q,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
+ Qpx    = VINTH2P_MOD::VINTH2P_ECMWF_MOD (Q,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
  varflg = -1
- Zpx    = vinth2p_ecmwf (Z,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
+ Zpx    = VINTH2P_MOD::VINTH2P_ECMWF_MOD (Z,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
 
 ;===========================
 ; write output to netcdf
 ;===========================
 
-   system("/bin/rm -f ../vinth2p_ecmwf_output.nc")   ; remove any pre-existing file
-   ncdf = addfile("../vinth2p_ecmwf_output.nc" ,"c")  ; open output netCDF file
+   system("/bin/rm -f ./vinth2p_ecmwf_output.nc")   ; remove any pre-existing file
+   ncdf = addfile("./vinth2p_ecmwf_output.nc" ,"c")  ; open output netCDF file
 
 ;===================================================================
 ; create global attributes of the file (optional)
