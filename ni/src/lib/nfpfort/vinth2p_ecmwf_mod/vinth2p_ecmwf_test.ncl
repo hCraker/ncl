@@ -8,9 +8,13 @@
 ;   - Setting parameters for "poisson_grid_fill"
 ;   - Using "poisson_grid_fill" to fill grid locations
 ;
+;
+;
 ; THIS FILE HAS BEEN CHANGED FROM THE ORIGINAL EXAMPLE
 ; THE PLOT HAS BEEN REMOVED AND THE DATA IS WRITTEN
 ; TO A FILE FOR USE IN TEST CASES
+;
+;
 ;*************************************************
 ;
 ; These files are loaded by default in NCL V6.2.0 and newer
@@ -18,7 +22,7 @@
 ; load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/gsn_csm.ncl"
 ; load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/contributed.ncl"
 
-external VINTH2P_MOD "./vinth2p_ecmwf_mod.so"
+external EXTERNAL "./vinth2p_ecmwf_mod.so"
 
 begin
  diri = "./"
@@ -64,11 +68,11 @@ begin
 ;-----------------------------------------------------------------
 
  varflg = 1
- Tpx    = VINTH2P_MOD::VINTH2P_ECMWF_MOD (T,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
+ Tpx    = EXTERNAL::VINTH2P_ECMWF_MOD (T,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
  varflg = 0
- Qpx    = VINTH2P_MOD::VINTH2P_ECMWF_MOD (Q,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
+ Qpx    = EXTERNAL::VINTH2P_ECMWF_MOD (Q,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
  varflg = -1
- Zpx    = VINTH2P_MOD::VINTH2P_ECMWF_MOD (Z,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
+ Zpx    = EXTERNAL::VINTH2P_ECMWF_MOD (Z,hyam,hybm,lev_p,PS,1,P0mb,1,True,varflg,TS,PHIS)
 
 ;===========================
 ; write output to netcdf

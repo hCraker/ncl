@@ -175,7 +175,10 @@ c Variable is "T" and ECMWF extrapolation is desired
                           PSFCMB = PSFC(I,J)*0.01D0
                           TSTAR = DATI(I,J,NLEVI)*
      +                            (1.D0+ALPHA* (PSFCMB/PLEVI(NLEVI)-1))
+C ----------- This is the only modification from the original fortran --------------
+C ----------- other than the subroutine name ---------------------------------------
                           PRINT *, TSTAR
+C ----------------------------------------------------------------------------------
                           HGT = PHIS(I,J)*GINV
                           IF (HGT.LT.2000.D0) THEN
                               ALNP = ALPHA*LOG(PLEVO(K)/PSFCMB)
